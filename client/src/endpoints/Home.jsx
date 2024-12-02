@@ -19,7 +19,8 @@ export default function Home() {
 
     return (
         <div>
-
+            <p>Homepage</p>
+            <p>Can see?</p>
         </div>
     )
 }
