@@ -1,3 +1,15 @@
+:root {
+  --black: #000000ff;
+  --paynes-gray: #5d737eff;
+  --maize: #fff07cff;
+  --mint-cream: #f0f7eeff;
+  --cambridge-blue: #87bba2ff;
+}
+
+body {
+  background-color: var(--mint-cream);
+  color: var(--black);
+}
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
