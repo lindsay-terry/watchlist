@@ -23,7 +23,7 @@ export default function SearchResults({ results }) {
         <Card.Group>
             {results.map((result) => {
                 const header = result.name || result.title;
-                const imgURL = `https://image.tmdb.org/t/p/w500${result.backdrop_path}`;
+                const imgURL = result.backdrop_path ? `https://image.tmdb.org/t/p/w500${result.backdrop_path}`: result.profile_path ? `https://image.tmdb.org/t/p/w500${result.profile_path}` : result.poster_path ? `https://image.tmdb.org/t/p/w500${result.poster_path}` : '../../public/unavailable.jpg';
                 console.log(imgURL);
 
                 return (
