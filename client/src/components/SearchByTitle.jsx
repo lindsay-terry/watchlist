@@ -46,19 +46,19 @@ export default function SearchByTitle() {
         setFormData({
             search: '',
         });
+        setSearchResults('');
     };
 
     return (
         <div>
-            {/* <p>HOMEPAGE</p> */}
             <Form onSubmit={handleSubmit}>
                 <FormField>
                     <FormInput name="search" id="search" value={formData.search} onChange={handleSearch} placeholder="Search for a movie"/>
                 </FormField>
                 <ButtonGroup>
-                    <Button type="button" onClick={handleCancel}>Cancel</Button>
+                    <Button type="button" onClick={handleCancel} style={{backgroundColor: 'var(--red-cmyk)', color: 'var(--baby-powder)'}}><i className="pause circle icon "></i>Cancel</Button>
                     <ButtonOr />
-                    <Button type="submit">Search</Button>
+                    <Button type="submit" style={{backgroundColor: 'var(--mantis)', color: 'var(--baby-powder)'}}><i className="play circle icon "></i>Search</Button>
                 </ButtonGroup>
             </Form>
             {searchResults ? (
