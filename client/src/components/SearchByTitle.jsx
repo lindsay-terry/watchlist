@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import SearchResults from './SearchResults';
-import { FormField, Form, FormInput, Button, ButtonGroup, ButtonOr } from 'semantic-ui-react';
+// import { FormField, Form, FormInput, Button, ButtonGroup, ButtonOr } from 'semantic-ui-react';
+import Form from 'react-bootstrap/Form';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
 
 export default function SearchByTitle() {
     const [formData, setFormData] = useState({
@@ -52,12 +55,11 @@ export default function SearchByTitle() {
     return (
         <div>
             <Form onSubmit={handleSubmit}>
-                <FormField>
-                    <FormInput name="search" id="search" value={formData.search} onChange={handleSearch} placeholder="Search for a movie"/>
-                </FormField>
+                <Form.Group>
+                    <Form.Control name="search" id="search" value={formData.search} onChange={handleSearch} placeholder="Search for a movie"/>
+                </Form.Group>
                 <ButtonGroup>
                     <Button type="button" onClick={handleCancel} style={{backgroundColor: 'var(--red-cmyk)', color: 'var(--baby-powder)'}}><i className="pause circle icon "></i>Cancel</Button>
-                    <ButtonOr />
                     <Button type="submit" style={{backgroundColor: 'var(--mantis)', color: 'var(--baby-powder)'}}><i className="play circle icon "></i>Search</Button>
                 </ButtonGroup>
             </Form>
