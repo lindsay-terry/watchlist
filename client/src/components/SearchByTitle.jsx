@@ -56,11 +56,11 @@ export default function SearchByTitle() {
         <div>
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                    <Form.Control name="search" id="search" value={formData.search} onChange={handleSearch} placeholder="Search for a movie"/>
+                    <Form.Control name="search" id="search" value={formData.search} onChange={handleSearch} placeholder="Search for a movie or TV show"/>
                 </Form.Group>
-                <ButtonGroup>
-                    <Button type="button" onClick={handleCancel} style={{backgroundColor: 'var(--red-cmyk)', color: 'var(--baby-powder)'}}><i className="pause circle icon "></i>Cancel</Button>
-                    <Button type="submit" style={{backgroundColor: 'var(--mantis)', color: 'var(--baby-powder)'}}><i className="play circle icon "></i>Search</Button>
+                <ButtonGroup className="m-2" >
+                    <Button type="button" variant="secondary" onClick={handleCancel} style={{backgroundColor: 'var(--red-cmyk)', color: 'var(--baby-powder)'}}><i className="bi bi-pause-circle p-2"></i>Cancel</Button>
+                    <Button type="submit" variant="secondary" style={{backgroundColor: 'var(--mantis)', color: 'var(--baby-powder)'}}><i className="bi bi-play-circle p-2"></i>Search</Button>
                 </ButtonGroup>
             </Form>
             {searchResults ? (

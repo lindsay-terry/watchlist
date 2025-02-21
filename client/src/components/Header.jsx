@@ -1,11 +1,14 @@
-// import SearchByTitle from './SearchByTitle';
+import SignUp from '../components/SignUp';
 
 export default function Header() {
 
     return (
-        <div>
+        <div className='d-flex justify-content-between'>
             <p>HEADER</p>
-            {/* <SearchByTitle /> */}
+            <div>
+                <SignUp />
+            </div>
+            
         </div>
     )
 }
