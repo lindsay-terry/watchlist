@@ -91,6 +91,26 @@ export default function SignUpForm({ isOpen, onClose }) {
         return Object.keys(newError).length === 0;
     };
 
+    const handleSignup = async (formData) => {
+        if (formData) {
+            try {
+                const response = await fetch('/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                if (!response.ok) {
+                    console.error('Failed to create a new user.');
+                }
+                const newUser = await response.json();
+                console.log('New user:', newUser);
+            } catch (error) {
+                console.error('Error creating new user', error);
+            }
+        }
+    };
     
     //Handle sign up form submission
     const handleSubmit = (event) => {
@@ -98,7 +118,11 @@ export default function SignUpForm({ isOpen, onClose }) {
         if (handleValidate()) {
             console.log('Form submitted', formData);
             setFormData(initialFormData);
+
+            handleSignup(formData);
+
             onClose();
+
         }
     };
 
