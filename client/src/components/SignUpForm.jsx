@@ -3,10 +3,20 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import InputGroup from 'react-bootstrap/InputGroup';
+// import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 
 export default function SignUpForm({ isOpen, onClose }) {
+
+    const styles = {
+        errorText: {
+            color: 'var(--red-cmyk',
+        },
+    }
+
+    //Store server error messages
+    const [serverError, setServerError] = useState('');
+
     //Initialize form
     const initialFormData = {
         firstName: '',
@@ -101,10 +111,18 @@ export default function SignUpForm({ isOpen, onClose }) {
                     },
                     body: JSON.stringify(formData)
                 });
-                if (!response.ok) {
-                    console.error('Failed to create a new user.');
-                }
+                
                 const newUser = await response.json();
+                // Throw error if username has already been taken
+                if (response.status === 500 && newUser.error.code === 11000) {
+                    setServerError('Username already taken, please choose another one.')
+                // Only clear and close modal if response is successful
+                } else if (response.status === 200) {
+                    setFormData(initialFormData);
+                    onClose();
+                } else {
+                    setServerError('An error occured, please try again.');
+                }
                 console.log('New user:', newUser);
             } catch (error) {
                 console.error('Error creating new user', error);
@@ -117,12 +135,7 @@ export default function SignUpForm({ isOpen, onClose }) {
         event.preventDefault();
         if (handleValidate()) {
             console.log('Form submitted', formData);
-            setFormData(initialFormData);
-
             handleSignup(formData);
-
-            onClose();
-
         }
     };
 
@@ -165,6 +178,12 @@ export default function SignUpForm({ isOpen, onClose }) {
 
                 <div className="d-flex justify-content-center">
                     <Button className="m-3" type="submit" onClick={handleSubmit}>Submit</Button>
+                </div>
+                {/* Show server error if it exists  */}
+                <div className="d-flex justify-content-center" style={styles.errorText}>
+                    {serverError && (
+                        <p>{serverError}</p>
+                    )}
                 </div>
             </Form>
         </div>
