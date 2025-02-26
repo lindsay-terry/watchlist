@@ -14,11 +14,9 @@ export default function SignUp() {
     }
 
     return (
-        <div>
-            <div>
-                <Button className="m-4" onClick={handleOpenModal}>Get Started </Button>
-            </div>
-
+        <div className="d-flex">
+            <Button className="m-4" onClick={handleOpenModal}>Get Started </Button>
+      
         {showModal && (
             <div className="modal show" style={{ display: 'block' }} data-bs-backdrop="static" aria-hidden="false" tabIndex="-1">
                 <div className="modal-dialog">
