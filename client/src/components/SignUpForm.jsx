@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 // import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import login from '../utils/auth';
 
 export default function SignUpForm({ isOpen, onClose }) {
 
@@ -114,15 +115,19 @@ export default function SignUpForm({ isOpen, onClose }) {
                 });
                 
                 const newUser = await response.json();
+                console.log('NEWUSER', newUser);
                 // Throw error if username has already been taken
                 if (response.status === 500 && newUser.error.code === 11000) {
                     setServerError('Username already taken, please choose another one.')
                 // Only clear and close modal if response is successful
                 } else if (response.status === 200) {
+                    // login(token);
+                    console.log('NEW USER TOKEN', newUser.token);
+                    login(newUser.token);
                     setFormData(initialFormData);
                     onClose();
                 } else {
-                    setServerError('An error occured, please try again.');
+                    setServerError('An error occurred, please try again.');
                 }
                 console.log('New user:', newUser);
             } catch (error) {
