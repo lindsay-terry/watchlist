@@ -2,6 +2,7 @@ import SearchByTitle from '../components/SearchByTitle';
 import SignUp from '../components/SignUp';
 import { Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
+import loggedIn from '../utils/auth';
 
 export default function Home() {
     const [randomNumber, setRandomNumber] = useState(null);
@@ -49,8 +50,11 @@ export default function Home() {
                 </div>
                 <div className="">
                         <h1 style={styles.heading} className='p-2'>Create a free account to share movies and tv shows with friends and family</h1>
-                        {/* <Button className="m-5 p-2">Get Started Now!</Button> */}
-                        <SignUp />
+                        {loggedIn ? (
+                            <p></p>
+                        ) : (
+                            <SignUp />
+                        )}
                 </div>
             </div>
 
