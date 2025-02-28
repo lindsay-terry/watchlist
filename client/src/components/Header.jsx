@@ -1,6 +1,6 @@
 import SignUp from '../components/SignUp';
 import Login from '../components/Login';
-import LogOut from '../components/Logout';
+import LogOut from '../components/LogOut';
 import AuthService from '../utils/auth';
 
 // import Button from 'react-bootstrap/Button';
