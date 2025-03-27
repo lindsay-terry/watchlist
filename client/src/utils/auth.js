@@ -69,7 +69,7 @@ class AuthService {
     // Check if logged in with JWT Token
     loggedIn() {
         const token = this.getJWTToken();
-        return token && !this.isJWTTokenExpired();
+        return token && !this.isJWTTokenExpired(token) ? true : false;
     };
 }
 

@@ -83,6 +83,7 @@ export default function LoginForm({ isOpen, onClose }) {
                 if (response.status !== 200) {
                     setServerError('Incorrect username or password, please try again');
                 } else if (response.status === 200) {
+                    // console.log(user.token);
                     AuthService.login(user.token);
                     setFormData(initialFormData);
                     onClose();

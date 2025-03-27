@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 // import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
-import login from '../utils/auth';
+import AuthService from '../utils/auth';
 
 export default function SignUpForm({ isOpen, onClose }) {
 
@@ -123,7 +123,7 @@ export default function SignUpForm({ isOpen, onClose }) {
                 } else if (response.status === 200) {
                     // login(token);
                     console.log('NEW USER TOKEN', newUser.token);
-                    login(newUser.token);
+                    AuthService.login(newUser.token);
                     setFormData(initialFormData);
                     onClose();
                 } else {
