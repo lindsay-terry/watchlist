@@ -2,7 +2,7 @@ import SearchByTitle from '../components/SearchByTitle';
 import SignUp from '../components/SignUp';
 import { Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import loggedIn from '../utils/auth';
+import AuthService from '../utils/auth';
 
 export default function Home() {
     const [randomNumber, setRandomNumber] = useState(null);
@@ -11,6 +11,11 @@ export default function Home() {
         const newRandomNumber = Math.floor(Math.random() * 5) + 1;
         setRandomNumber(newRandomNumber)
     }, []);
+
+    useEffect(() => {
+        // const isLoggedIn = AuthService.loggedIn;
+        console.log('AM I LOGGED IN?,', AuthService.loggedIn());
+    }, [])
 
     
 
@@ -49,11 +54,22 @@ export default function Home() {
                     <img src={`../../images/tv${randomNumber}.png`} style={styles.tvImg} alt="Image of retro style TV"></img>
                 </div>
                 <div className="">
-                        <h1 style={styles.heading} className='p-2'>Create a free account to share movies and tv shows with friends and family</h1>
-                        {loggedIn ? (
+                        {AuthService.loggedIn() ? (
+                            <div>
+                                <h1 style={styles.heading} className='p-2'>Start searching below for movies and TV shows</h1>
+                            </div>
+                        ) : (
+                            <div>
+                                <h1 style={styles.heading} className='p-2'>Create a free account to share movies and tv shows with friends and family</h1>
+                            </div>
+                        )}
+                
+                        {AuthService.loggedIn() ? (
                             <p></p>
                         ) : (
-                            <SignUp />
+                            <div>
+                                <SignUp />
+                            </div>
                         )}
                 </div>
             </div>

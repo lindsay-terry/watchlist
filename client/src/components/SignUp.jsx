@@ -1,9 +1,11 @@
 import Button from 'react-bootstrap/Button';
 import SignUpForm from '../components/SignUpForm';
+// import Login from '../components/Login';
 import { useState } from 'react';
 
 export default function SignUp() {
     const [showModal, setShowModal] = useState(false);
+    // const [changeLogin, setChangeLogin] = useState(false);
 
     const handleOpenModal = () => {
         setShowModal(true);
@@ -12,6 +14,11 @@ export default function SignUp() {
     const handleCloseModal = () => {
         setShowModal(false);
     }
+
+    // const handleLoginInstead = () => {
+    //     setShowModal(false);
+    //     setChangeLogin(true);
+    // }
 
     return (
         <div className="d-flex">
@@ -28,14 +35,23 @@ export default function SignUp() {
                         <div className="modal-body">
                             <SignUpForm isOpen={showModal} onClose={handleCloseModal}/>
                         </div>
-                        <div className="modal-footer">
-                            <Button className="btn btn-secondary" onClick={handleCloseModal}>Close</Button>
+                        <div className="modal-footer d-flex justify-content-between">
+                            {/* <div className="d-flex flex-column">
+                                <h4>Already have an account?</h4>
+                                <Button onClick={handleLoginInstead} >Login</Button>
+                            </div> */}
+
+                            <Button className="btn btn-secondary justify-content-end" onClick={handleCloseModal}>Close</Button>
                             {/* <Button type="button" className="btn btn-primary">Save changes</Button> */}
                         </div>
                     </div>
                 </div>
             </div>
         )}
+
+        {/* {changeLogin && (
+            <Login />
+        )} */}
 
     </div>
     )
